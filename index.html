@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I'm Sorry 💕</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', 'Arial', cursive;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            background: white;
+            border-radius: 30px;
+            padding: 50px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        h1 {
+            color: #764ba2;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .emoji {
+            font-size: 5em;
+            margin: 20px 0;
+            animation: rotate 2s ease-in-out infinite;
+        }
+
+        @keyframes rotate {
+            0%, 100% { transform: rotate(-10deg); }
+            50% { transform: rotate(10deg); }
+        }
+
+        p {
+            color: #555;
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin: 20px 0;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1em;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s;
+            font-family: 'Comic Sans MS', 'Arial', cursive;
+        }
+
+        .btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 25px rgba(118, 75, 162, 0.4);
+        }
+
+        .btn-no {
+            background: #ff6b6b;
+            position: relative;
+        }
+
+        .heart {
+            color: #ff6b6b;
+            font-size: 2em;
+            display: inline-block;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.2); }
+            50% { transform: scale(1); }
+        }
+
+        .flowers {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 2em;
+            opacity: 0.3;
+        }
+
+        .stars {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 2em;
+            opacity: 0.3;
+        }
+
+        .gift-box {
+            font-size: 4em;
+            margin: 20px;
+            animation: shake 0.5s infinite;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-5deg); }
+            75% { transform: rotate(5deg); }
+        }
+
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #f0f;
+            position: absolute;
+            animation: fall 3s linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Page 1: Initial Apology -->
+        <div class="page active" id="page1">
+            <div class="flowers">🌸</div>
+            <div class="stars">✨</div>
+            <div class="emoji">😢</div>
+            <h1>I'm Really Sorry...</h1>
+            <p>I know I messed up, and I feel terrible about it.</p>
+            <p>Can we talk about this?</p>
+            <button class="btn" onclick="nextPage(2)">Yes, let's talk</button>
+            <button class="btn btn-no" onclick="moveButton(event)">No!</button>
+        </div>
+
+        <!-- Page 2: Explanation -->
+        <div class="page" id="page2">
+            <div class="emoji">🥺</div>
+            <h1>Thank You!</h1>
+            <p>I want you to know that I never meant to hurt you.</p>
+            <p>What I did was wrong, and I take full responsibility for it.</p>
+            <p>Your feelings matter so much to me.</p>
+            <button class="btn" onclick="nextPage(3)">Continue</button>
+        </div>
+
+        <!-- Page 3: Sincerity -->
+        <div class="page" id="page3">
+            <div class="emoji">💔</div>
+            <h1>I Really Mean It</h1>
+            <p>I've been thinking about what happened...</p>
+            <p>And I realize how much I value you and our relationship.</p>
+            <p>I promise to do better.</p>
+            <button class="btn" onclick="nextPage(4)">I'm listening...</button>
+        </div>
+
+        <!-- Page 4: Promise -->
+        <div class="page" id="page4">
+            <div class="emoji">🤝</div>
+            <h1>My Promise to You</h1>
+            <p>I promise to:</p>
+            <p>✓ Always listen to your feelings<br>
+               ✓ Think before I act<br>
+               ✓ Be more considerate<br>
+               ✓ Make things right</p>
+            <button class="btn" onclick="nextPage(5)">Okay...</button>
+        </div>
+
+        <!-- Page 5: Making It Up -->
+        <div class="page" id="page5">
+            <div class="gift-box">🎁</div>
+            <h1>Let Me Make It Up to You!</h1>
+            <p>I want to do something special to show you how sorry I am.</p>
+            <p>What would make you happy?</p>
+            <button class="btn" onclick="nextPage(6)">Surprise me!</button>
+            <button class="btn" onclick="nextPage(6)">I'll think about it</button>
+        </div>
+
+        <!-- Page 6: Heart -->
+        <div class="page" id="page6">
+            <div class="emoji">💕</div>
+            <h1>From the Bottom of My Heart</h1>
+            <p>You mean the world to me! <span class="heart">❤️</span></p>
+            <p>I'm so grateful for your patience and understanding.</p>
+            <p>Thank you for giving me a chance to make things right.</p>
+            <button class="btn" onclick="nextPage(7)">Continue</button>
+        </div>
+
+        <!-- Page 7: Question -->
+        <div class="page" id="page7">
+            <div class="emoji">🥺</div>
+            <h1>So...</h1>
+            <p>Do you forgive me?</p>
+            <p>I promise I'll be better!</p>
+            <button class="btn" onclick="nextPage(8)">Yes! 💕</button>
+            <button class="btn btn-no" onclick="moveButton(event)">Not yet...</button>
+        </div>
+
+        <!-- Page 8: Celebration -->
+        <div class="page" id="page8">
+            <div class="emoji">🎉</div>
+            <h1>YAAAY! Thank You! 🎊</h1>
+            <p>You just made me the happiest person ever! <span class="heart">❤️</span></p>
+            <p>I promise I won't let you down again!</p>
+            <p>You're absolutely amazing! 💖</p>
+            <button class="btn" onclick="createConfetti()">Celebrate! 🎉</button>
+            <button class="btn" onclick="nextPage(1)">Start Over</button>
+        </div>
+    </div>
+
+    <script>
+        let currentPage = 1;
+
+        function nextPage(pageNum) {
+            // Hide current page
+            document.getElementById('page' + currentPage).classList.remove('active');
+            
+            // Show next page
+            currentPage = pageNum;
+            document.getElementById('page' + currentPage).classList.add('active');
+        }
+
+        function moveButton(event) {
+            const button = event.target;
+            const container = document.querySelector('.container');
+            const containerRect = container.getBoundingClientRect();
+            
+            // Random position within container
+            const maxX = containerRect.width - button.offsetWidth - 40;
+            const maxY = containerRect.height - button.offsetHeight - 40;
+            
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
+            
+            button.style.position = 'absolute';
+            button.style.left = randomX + 'px';
+            button.style.top = randomY + 'px';
+            
+            // After 3 attempts, move to next page
+            if (!button.dataset.clicks) {
+                button.dataset.clicks = 0;
+            }
+            button.dataset.clicks++;
+            
+            if (button.dataset.clicks >= 3) {
+                alert("Okay okay! I can see you're still upset. Let me try harder to make things right! 💕");
+                nextPage(currentPage === 1 ? 2 : 8);
+            }
+        }
+
+        function createConfetti() {
+            const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#f9ca24', '#6c5ce7', '#a29bfe'];
+            const container = document.querySelector('.container');
+            
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDelay = Math.random() * 2 + 's';
+                    confetti.style.width = Math.random() * 10 + 5 + 'px';
+                    confetti.style.height = confetti.style.width;
+                    container.appendChild(confetti);
+                    
+                    setTimeout(() => confetti.remove(), 3000);
+                }, i * 30);
+            }
+        }
+
+        // Add some floating hearts in the background
+        setInterval(() => {
+            if (currentPage === 8) {
+                const heart = document.createElement('div');
+                heart.innerHTML = '💕';
+                heart.style.position = 'fixed';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.bottom = '-50px';
+                heart.style.fontSize = Math.random() * 30 + 20 + 'px';
+                heart.style.animation = 'fall 4s linear';
+                heart.style.zIndex = '-1';
+                document.body.appendChild(heart);
+                
+                setTimeout(() => heart.remove(), 4000);
+            }
+        }, 500);
+    </script>
+</body>
+</html>
